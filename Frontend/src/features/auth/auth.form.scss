@@ -90,8 +90,28 @@ main {
         }
     }
 
+    .form-error {
+        color: #ff7b99;
+        font-size: 0.9rem;
+    }
+
     a {
         color: #e1034d;
         text-decoration: none;
+
+        &:hover {
+            color: #ff3b76;
+            text-decoration: underline;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 1rem 0.75rem;
+
+        .form-container {
+            border-radius: 1rem;
+        }
     }
 }

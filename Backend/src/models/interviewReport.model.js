@@ -1,0 +1,160 @@
+const mongoose = require('mongoose');
+
+
+const technicalQuestionSchema = new mongoose.Schema({
+    question: {
+        type: String,
+        required: [ true, "Technical question is required" ]
+    },
+    intention: {
+        type: String,
+        required: [ true, "Intention is required" ]
+    },
+    answer: {
+        type: String,
+        required: [ true, "Answer is required" ]
+    }
+}, {
+    _id: false
+})
+
+const behavioralQuestionSchema = new mongoose.Schema({
+    question: {
+        type: String,
+        required: [ true, "Technical question is required" ]
+    },
+    intention: {
+        type: String,
+        required: [ true, "Intention is required" ]
+    },
+    answer: {
+        type: String,
+        required: [ true, "Answer is required" ]
+    }
+}, {
+    _id: false
+})
+
+const skillGapSchema = new mongoose.Schema({
+    skill: {
+        type: String,
+        required: [ true, "Skill is required" ]
+    },
+    severity: {
+        type: String,
+        enum: [ "low", "medium", "high" ],
+        required: [ true, "Severity is required" ]
+    }
+}, {
+    _id: false
+})
+
+const preparationPlanSchema = new mongoose.Schema({
+    day: {
+        type: Number,
+        required: [ true, "Day is required" ]
+    },
+    focus: {
+        type: String,
+        required: [ true, "Focus is required" ]
+    },
+    tasks: [ {
+        type: String,
+        required: [ true, "Task is required" ]
+    } ]
+})
+
+const matchEvidenceSchema = new mongoose.Schema({
+    profileSource: {
+        type: String,
+        enum: [ "resume", "selfDescription" ],
+        required: [ true, "Profile evidence source is required" ]
+    },
+    profileExcerpt: {
+        type: String,
+        required: [ true, "Profile evidence is required" ]
+    },
+    jobRequirement: {
+        type: String,
+        required: [ true, "Job requirement evidence is required" ]
+    },
+    relevance: {
+        type: String,
+        required: [ true, "Evidence relevance is required" ]
+    }
+}, {
+    _id: false
+})
+
+const matchCategorySchema = new mongoose.Schema({
+    score: {
+        type: Number,
+        min: 0,
+        max: 100,
+        required: [ true, "Match category score is required" ]
+    },
+    explanation: {
+        type: String,
+        required: [ true, "Match category explanation is required" ]
+    },
+    evidence: [ matchEvidenceSchema ]
+}, {
+    _id: false
+})
+
+const matchBreakdownSchema = new mongoose.Schema({
+    skills: {
+        type: matchCategorySchema,
+        required: true
+    },
+    experience: {
+        type: matchCategorySchema,
+        required: true
+    },
+    keywords: {
+        type: matchCategorySchema,
+        required: true
+    }
+}, {
+    _id: false
+})
+
+const interviewReportSchema = new mongoose.Schema({
+    jobDescription: {
+        type: String,
+        required: [ true, "Job description is required" ]
+    },
+    resume: {
+        type: String,
+    },
+    selfDescription: {
+        type: String,
+    },
+    matchScore: {
+        type: Number,
+        min: 0,
+        max: 100,
+    },
+    matchBreakdown: {
+        type: matchBreakdownSchema
+    },
+    technicalQuestions: [ technicalQuestionSchema ],
+    behavioralQuestions: [ behavioralQuestionSchema ],
+    skillGaps: [ skillGapSchema ],
+    preparationPlan: [ preparationPlanSchema ],
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users"
+    },
+    title: {
+        type: String,
+        required: [ true, "Job title is required" ]
+    }
+}, {
+    timestamps: true
+})
+
+
+const interviewReportModel = mongoose.model("InterviewReport", interviewReportSchema);
+
+module.exports = interviewReportModel;  

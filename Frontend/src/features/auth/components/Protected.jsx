@@ -1,12 +1,13 @@
 import {useAuth} from "../hooks/useAuth"
 import {Navigate} from "react-router"
+import LoadingAnimation from "../../../components/LoadingAnimation"
 
 
 const Protected = ({children}) => {
     const {loading,user} =  useAuth()
 
     if(loading){
-        return (<main><h1>Loading.....</h1></main>)
+        return <LoadingAnimation message="Checking your session..." />
     }
 
     if(!user){
