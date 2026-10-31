@@ -1,0 +1,97 @@
+main {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    background:
+        radial-gradient(ellipse at top, rgba(225, 3, 77, 0.12), transparent 55%),
+        #161616;
+
+    .form-container {
+        width: min(100%, 26rem);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: clamp(1.5rem, 5vw, 2.5rem);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 1.25rem;
+        background: #202020;
+        box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.3);
+
+        h1 {
+            font-size: clamp(1.75rem, 5vw, 2.25rem);
+            letter-spacing: -0.04em;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        label {
+            color: #dedede;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            border: 1px solid #414141;
+            outline: none;
+            padding: 0.8rem 1rem;
+            border-radius: 0.65rem;
+            background: #171717;
+            color: #fff;
+            font: inherit;
+            transition: border-color 150ms ease, box-shadow 150ms ease;
+
+            &::placeholder {
+                color: #888;
+            }
+
+            &:focus-visible {
+                border-color: #ff3b76;
+                box-shadow: 0 0 0 3px rgba(225, 3, 77, 0.2);
+            }
+        }
+    }
+
+    .primary-button {
+        border: 0;
+        border-radius: 0.65rem;
+        padding: 0.85rem 1rem;
+        background: #e1034d;
+        color: #fff;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background-color 150ms ease, transform 150ms ease;
+
+        &:hover {
+            background: #f21b63;
+        }
+
+        &:active {
+            transform: translateY(1px);
+        }
+
+        &:focus-visible {
+            outline: 3px solid rgba(255, 59, 118, 0.55);
+            outline-offset: 3px;
+        }
+    }
+
+    a {
+        color: #e1034d;
+        text-decoration: none;
+    }
+}
